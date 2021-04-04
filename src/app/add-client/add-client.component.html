@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <form [formGroup]="formClient" action="">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Add first name...">
+                    <div *ngIf="formClient.controls['name'].invalid && formClient.controls['name'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formClient.controls['name'].errors.required">Name required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastname" placeholder="Add last name...">
+                    <div *ngIf="formClient.controls['lastname'].invalid && formClient.controls['lastname'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formClient.controls['lastname'].errors.required">Last name required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" formControlName="email" placeholder="Add email...">
+                    <div *ngIf="formClient.controls['email'].invalid && formClient.controls['email'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formClient.controls['email'].errors.required">Email required</span>
+                        <span *ngIf="formClient.controls['email'].errors.email">Invalid email</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">ID</label>
+                    <input type="text" class="form-control" formControlName="document" placeholder="Add ID...">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Birthday</label>
+                    <input type="date" class="form-control" formControlName="birthday">
+                    <div *ngIf="formClient.controls['birthday'].invalid && formClient.controls['birthday'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formClient.controls['birthday'].errors.required">Birthday required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Add photo</label>
+                    <input (change)="uploadImg($event)" class="form-control-file" formControlName="image" type="file" id="formFile">
+                    <div *ngIf="formClient.controls['image'].invalid && formClient.controls['image'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formClient.controls['image'].errors.required">Image required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <progressbar [value]="uploadPercent" type="primary" [striped]="true" [animate]="true">{{ uploadPercent }}%</progressbar>
+            </div>
+        </div>
+        <button *ngIf="!esEditable" class="btn btn-primary mt-3" [disabled]="formClient.invalid" (click)="add()">Add</button>
+        <button *ngIf="esEditable" class="btn btn-primary mt-3" (click)="edit()">Edit</button>
+    </form>
+</div>

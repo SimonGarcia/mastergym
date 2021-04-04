@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-8">
+            <h4>Prices</h4>
+            <ul>
+                <li *ngFor="let price of prices" (click)="editPrice(price)"><a>{{ price.name }} id: {{ price.id }}</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h4>Add/Edit</h4>
+            <form [formGroup]="priceFrom" action="">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input formControlName="name" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="">Price</label>
+                    <input formControlName="cost" class="form-control" type="number">
+                </div>
+                <div class="form-group">
+                    <label for="">Time</label>
+                    <input formControlName="time" class="form-control" type="number">
+                </div>
+                <div class="form-group">
+                    <label for="">Type of subscription</label>
+                    <select formControlName="type" class="form-control" name="" id="">
+                        <option value="1">Daily</option>
+                        <option value="2">Weekly</option>
+                        <option value="3">Biweekly</option>
+                        <option value="4">Monthly</option>
+                        <option value="5">Annual</option>
+                    </select>
+                </div>
+                <button *ngIf="!isEdit" [disabled]="priceFrom.invalid" (click)="add()" class="btn btn-primary">Add</button>
+                <button *ngIf="isEdit" [disabled]="priceFrom.invalid" (click)="edit()" class="btn btn-danger">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>

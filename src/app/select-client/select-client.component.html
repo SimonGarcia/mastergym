@@ -1,0 +1,22 @@
+<div class="clients">
+    <div class="form-group" *ngIf='!name'>
+        <label from for="">Client</label>
+        <input class="form-control" type="text" (input)="searchClient($event.target.value)" placeholder="Search client...">
+    </div>
+    <div class="form-group" *ngIf='name'>
+        <label for="">Client</label>
+        <div class="row">
+            <div class="col-sm-9">
+                <input [(ngModel)]='name' disabled type="text" class="form-control">
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-danger" (click)="cancelClient()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="list-group">
+        <div *ngFor="let client of clients">
+            <a *ngIf="client.visible" (click)="selectClient(client)" class="list-group-item list-group-item-action"> {{ client.name }} {{ client.lastname }} </a>
+        </div>
+    </div>
+</div>

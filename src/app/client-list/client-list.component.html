@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <h4>Client List</h4>
+
+    <form action="">
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search client...">
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let client of clients">
+            <div class="card">
+                <img [src]="client.image" class="card-img-top client-img rounded mx-auto d-block">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ client.name }} {{ client.lastname }} </h5>
+                    <p>{{ client.id }}</p>
+                    <a [routerLink]="['/add-client/', client.id]" class="card-link">Edit</a>
+                    <a href="#" class="card-link text-danger">Disable</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="text-center">
+        <img src="assets/logo.png" alt="">
+        <h3>Welcome to MasterGym!</h3>
+    </div>
+    <form [formGroup]="formLogin">
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="Enter your email...">
+        </div>
+        <div *ngIf="formLogin.controls['email'].invalid && formLogin.controls['email'].dirty" class="alert alert-danger" role="alert">
+            <span *ngIf="formLogin.controls['email'].errors.required">Email required</span>
+            <span *ngIf="formLogin.controls['email'].errors.email">Invalid email</span>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" (keyUp.enter)="login()" formControlName="password" id="password" placeholder="Enter your password...">
+        </div>
+        <div *ngIf="formLogin.controls['password'].invalid && formLogin.controls['password'].dirty" class="alert alert-danger" role="alert">
+            <span *ngIf="formLogin.controls['password'].errors.required">Password required</span>
+        </div>
+
+        <button type="submit" (click)="login()" [disabled]="!formLogin.valid" class="btn btn-primary">Log in</button>
+    </form>
+
+    <div *ngIf="!validData" class="alert alert-warning" role="alert">
+        {{ errorText }}
+    </div>
+
+    <ngx-spinner bdColor="rgba(0, 0, 0)" size="medium" color="#fff" type="ball-atom" [fullScreen]="true">
+        <p style="color: white"> Log In... </p>
+    </ngx-spinner>
+</div>

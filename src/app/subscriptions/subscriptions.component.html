@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <app-select-client [name]="clienteSeleccionado.name" (seleccionoCliente)="asignarCliente($event)" (canceloCliente)="eliminarCliente()"></app-select-client>
+            <div class="form-group">
+                <label for="">Price</label>
+                <select [(ngModel)]="idPrecio" (change)="seleccionarPrecio($event.target.value)" class="form-control" name="" id="">
+                    <option [value]="null">Select a price</option>
+                    <option *ngFor="let price of prices" [value]="price.id"> {{ price.name }} </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Initial Date</label>
+                <input type="text" disabled [value]="inscription.date | date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Final Date</label>
+                <input type="text" disabled [value]="inscription.finalDate | date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Subtotal</label>
+                <input type="number" disabled [value]="inscription.subtotal" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">IVA</label>
+                <input type="number" disabled [value]="inscription.iva" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Total</label>
+                <input type="number" disabled [value]="inscription.total" class="form-control">
+            </div>
+
+            <button class="btn btn-primary mt-3" (click)="save()">Save</button>
+
+        </div>
+        <div class="col-sm-6">
+            <div *ngIf="clienteSeleccionado.image">
+                <img [src]="clienteSeleccionado.image" class="img-cliente">
+            </div>
+        </div>
+    </div>
+</div>
